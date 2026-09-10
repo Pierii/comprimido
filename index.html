@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <link rel="icon" type="image/x-icon" href="img/comprimidinho.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <nav class="navbar">
-        <a href="#" class="nav-logo">COMPRIMIDO</a>
+        <a href="#" class="nav-logo">
+            <img src="img/comprimidinho_transparente.ico" alt="">COMPRIMIDO
+        </a>
 
         <div class="nav-menu">
             <button class="menu-button" id="menu-button">
@@ -35,6 +39,52 @@
             </div>
         </div>
     </nav>
+
+    <main class="container">
+
+        <header class="header">
+            <div class="logo">
+                <span class="logo-main">
+                    COMPRIMIDO
+                </span>
+
+                <span class="logo-sub">
+                    MAYBE IT'S COOL
+                </span>
+            </div>
+        </header>
+
+        <section class="upload-section">
+
+            <div class="upload-box">
+
+                <div class="upload-content">
+
+                    <div class="file-icon">
+                        PDF
+                    </div>
+
+                    <h1>
+                        ARRASTE SEU PDF
+                    </h1>
+
+                    <p>
+                        or selecione um arquivo do seu dispositivo
+                    </p>
+
+                    <button class="select-button">
+                        SELECIONE O PDF
+                    </button>
+
+                    <input type="file" id="pdf-input" accept=".pdf" hidden>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
     <script src="js/script.js"></script>
 </body>
+
 </html>
