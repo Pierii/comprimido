@@ -619,8 +619,9 @@ body::after {
 
 .tool-info {
     display: flex;
-
     flex-direction: column;
+
+    text-align: center;
 }
 
 /* TÍTULO DO CARD */
@@ -652,6 +653,504 @@ body::after {
 
     letter-spacing: 0.05em;
 }
+
+.tool-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1;
+}
+
+.pdf-animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.pdf-page {
+    position: relative;
+
+    width: 70px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #ff2a9b;
+
+    background: rgba(255, 42, 155, 0.08);
+
+    box-shadow:
+        0 0 14px rgba(255, 42, 155, 0.42),
+        0 0 24px rgba(255, 42, 155, 0.12);
+
+    transform: skew(-2deg);
+}
+
+.pdf-page {
+    animation: pdf-compress 3s ease-in-out infinite;
+}
+
+
+@keyframes pdf-compress {
+
+    0%,
+    20% {
+        transform: skew(-2deg) scale(1);
+    }
+
+    80% {
+        transform: skew(-2deg) scale(0.78);
+    }
+
+    88% {
+        transform: skew(-2deg) scale(0.78);
+    }
+
+    88.1%,
+    100% {
+        transform: skew(-2deg) scale(1);
+    }
+
+}
+
+.pdf-page {
+    animation:
+        pdf-compress 3s ease-in-out infinite,
+        pdf-glitch 3s steps(1) infinite;
+}
+
+@keyframes pdf-glitch {
+
+    0%,
+    84%,
+    100% {
+        filter: none;
+    }
+
+    85% {
+        filter: drop-shadow(2px 0 #ff2a9b);
+        transform: skew(-2deg) scale(0.78) translateX(-2px);
+    }
+
+    86% {
+        filter: drop-shadow(-2px 0 #00e5ff);
+        transform: skew(-2deg) scale(0.78) translateX(2px);
+    }
+
+    87% {
+        filter: none;
+    }
+
+}
+
+.pdf-page span {
+    color: #f5f0ff;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-shadow:
+        1px 0 #00e5ff;
+}
+
+.tool-card:hover .pdf-page {
+    border-color: #ff2a9b;
+
+    background: #08060c;
+
+    box-shadow:
+        0 0 12px rgba(255, 42, 155, 0.8),
+        0 0 28px rgba(255, 42, 155, 0.45),
+        0 0 45px rgba(255, 42, 155, 0.2);
+}
+
+.tool-card:hover .pdf-page span {
+    color: #f5f0ff;
+
+    text-shadow:
+        1px 0 #00e5ff;
+}
+
+.convert-animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.convert-file,
+.convert-pdf {
+    width: 55px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #ff2a9b;
+
+    background: rgba(255, 42, 155, 0.08);
+
+    box-shadow:
+        0 0 12px rgba(255, 42, 155, 0.4),
+        0 0 22px rgba(255, 42, 155, 0.12);
+
+    transform: skew(-2deg);
+}
+
+.convert-file span,
+.convert-pdf span {
+    color: #f5f0ff;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-shadow:
+        1px 0 #00e5ff;
+}
+
+.convert-arrow {
+    color: #ff2a9b;
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    text-shadow:
+        1px 0 #00e5ff;
+}
+
+.convert-file {
+    animation: convert-file 4s ease-in-out infinite;
+}
+
+.convert-arrow {
+    animation: convert-arrow 4s ease-in-out infinite;
+}
+
+.convert-pdf {
+    animation: convert-pdf 4s ease-in-out infinite;
+}
+
+.convert-file,
+.convert-pdf {
+    animation:
+        convert-file 3s ease-in-out infinite,
+        convert-file-glitch 3s steps(1) infinite;
+}
+
+.convert-pdf {
+    animation:
+        convert-pdf 3s ease-in-out infinite,
+        convert-pdf-glitch 3s steps(1) infinite;
+}
+
+@keyframes convert-file {
+
+    0% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(0);
+    }
+
+    10% {
+        opacity: 1;
+        filter: brightness(1.8);
+        transform: skew(-2deg) translateX(0);
+    }
+
+    20% {
+        opacity: 1;
+        filter: brightness(1.8);
+        transform: skew(-2deg) translateX(0);
+    }
+
+    25% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(-2px);
+    }
+
+    26% {
+        opacity: 0.35;
+        filter: drop-shadow(2px 0 #ff2a9b);
+        transform: skew(-2deg) translateX(2px);
+    }
+
+    27% {
+        opacity: 0.35;
+        filter: drop-shadow(-2px 0 #00e5ff);
+        transform: skew(-2deg) translateX(-2px);
+    }
+
+    28% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(0);
+    }
+
+    30%,
+    100% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(0);
+    }
+}
+
+@keyframes convert-arrow {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: brightness(1.8);
+    }
+}
+
+@keyframes convert-pdf {
+
+    0%,
+    45% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(-8px);
+    }
+
+    55%,
+    85% {
+        opacity: 1;
+        filter: brightness(1.8);
+        transform: skew(-2deg) translateX(0);
+    }
+
+    95%,
+    100% {
+        opacity: 0.35;
+        filter: brightness(1);
+        transform: skew(-2deg) translateX(0);
+    }
+}
+
+.tool-card:hover .convert-file,
+.tool-card:hover .convert-pdf {
+    border-color: #b20aa3;
+
+    background: #08060c;
+
+    box-shadow:
+        0 0 12px rgba(178, 10, 163, 0.8),
+        0 0 28px rgba(178, 10, 163, 0.45),
+        0 0 45px rgba(178, 10, 163, 0.2);
+}
+
+.tool-card:hover .convert-file span,
+.tool-card:hover .convert-pdf span {
+    color: #f5f0ff;
+}
+
+.tool-card:hover .convert-arrow {
+    color: #ff2a9b;
+
+    text-shadow:
+        1px 0 #00e5ff,
+        0 0 10px rgba(255, 42, 155, 0.6);
+}
+
+.merge-animation {
+    position: relative;
+
+    width: 180px;
+    height: 130px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.merge-file,
+.merge-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #00b8ff;
+
+    background: rgba(0, 184, 255, 0.08);
+
+    box-shadow:
+        0 0 14px rgba(0, 184, 255, 0.42),
+        0 0 24px rgba(0, 184, 255, 0.12);
+
+    transform: skew(-2deg);
+}
+
+.merge-file {
+    width: 45px;
+    height: 60px;
+}
+
+.merge-result {
+    width: 55px;
+    height: 70px;
+}
+
+.merge-file span,
+.merge-result span {
+    color: #f5f0ff;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+}
+
+.merge-file-1 {
+    transform: skew(-2deg) translateX(-45px);
+}
+
+.merge-file-2 {
+    transform: skew(-2deg) translateY(-15px);
+}
+
+.merge-file-3 {
+    transform: skew(-2deg) translateX(45px);
+}
+
+.merge-result {
+    position: absolute;
+
+    opacity: 0;
+}
+
+.merge-file-1 {
+    animation: merge-file-1 3s ease-in-out infinite;
+}
+
+.merge-file-2 {
+    animation: merge-file-2 3s ease-in-out infinite;
+}
+
+.merge-file-3 {
+    animation: merge-file-3 3s ease-in-out infinite;
+}
+
+.merge-result {
+    animation: merge-result 3s ease-in-out infinite;
+}
+
+@keyframes merge-file-1 {
+
+    0%,
+    35% {
+        opacity: 1;
+        transform: skew(-2deg) translateX(-45px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: skew(-2deg) translateX(0);
+    }
+
+    65%,
+    100% {
+        opacity: 0;
+        transform: skew(-2deg) translateX(0);
+    }
+
+}
+
+@keyframes merge-file-2 {
+
+    0%,
+    35% {
+        opacity: 1;
+        transform: skew(-2deg) translateY(-15px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: skew(-2deg) translateY(0);
+    }
+
+    65%,
+    100% {
+        opacity: 0;
+        transform: skew(-2deg) translateY(0);
+    }
+}
+
+@keyframes merge-file-3 {
+
+    0%,
+    35% {
+        opacity: 1;
+        transform: skew(-2deg) translateX(45px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: skew(-2deg) translateX(0);
+    }
+
+    65%,
+    100% {
+        opacity: 0;
+        transform: skew(-2deg) translateX(0);
+    }
+}
+
+@keyframes merge-result {
+
+    0%,
+    55% {
+        opacity: 0;
+        transform: skew(-2deg) scale(0.85);
+    }
+
+    65% {
+        opacity: 1;
+        transform: skew(-2deg) scale(1);
+    }
+
+    90% {
+        opacity: 1;
+        transform: skew(-2deg) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: skew(-2deg) scale(0.85);
+    }
+
+}
+
+.tool-card:hover .merge-file,
+.tool-card:hover .merge-result {
+    border-color: #00b8ff;
+
+    background: #08060c;
+
+    box-shadow:
+        0 0 10px rgba(0, 184, 255, 0.65),
+        0 0 22px rgba(0, 184, 255, 0.3);
+}
+
+.tool-card:hover .merge-file span,
+.tool-card:hover .merge-result span {
+    color: #f5f0ff;
+}
+
+.tool-card:hover .merge-file span,
+.tool-card:hover .merge-result span {
+    color: #f5f0ff;
+}
+
 
 /* ========================================
    PÁGINA DE COMPRESSÃO
