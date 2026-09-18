@@ -592,7 +592,6 @@ body::after {
 }
 
 .tool-card:hover {
-
     background-color: #ff2a9b;
 
     color: #08060c;
@@ -1151,6 +1150,17 @@ body::after {
     color: #f5f0ff;
 }
 
+@media (max-width: 800px) {
+
+    .tools {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        min-height: 260px;
+    }
+
+}
 
 /* ========================================
    PÁGINA DE COMPRESSÃO
@@ -1571,8 +1581,67 @@ body::after {
     font-size: 0.8rem;
 
     letter-spacing: 0.08em;
+}
 
-    text-transform: lowercase;
+#upload-size {
+    margin: -15px 0 25px;
+
+    color: rgba(245, 240, 255, 0.35);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.08em;
+}
+
+.processing {
+    display: none;
+
+    width: 240px;
+
+    text-align: center;
+}
+
+.processing-text {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #f5f0ff;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-shadow:
+        1px 0 #ff2a9b,
+        -1px 0 #00e5ff;
+}
+
+.processing-bar {
+    width: 100%;
+    height: 4px;
+
+    background: rgba(245, 240, 255, 0.08);
+
+    border: 1px solid rgba(0, 229, 255, 0.3);
+
+    box-shadow:
+        0 0 8px rgba(0, 229, 255, 0.15);
+}
+
+.processing-progress {
+    width: 0%;
+    height: 100%;
+
+    background: #00e5ff;
+
+    box-shadow:
+        0 0 8px rgba(0, 229, 255, 0.7),
+        0 0 16px rgba(0, 229, 255, 0.35);
+
+    transition: width 0.15s linear;
 }
 
 /* TEXTO NO HOVER */
@@ -1636,6 +1705,87 @@ body::after {
 
     box-shadow:
         0 0 0 #b5166f;
+}
+
+.compress-button {
+    display: none;
+
+    padding: 12px 28px;
+
+    background: transparent;
+
+    border: 1px solid #ff2a9b;
+
+    color: #f5f0ff;
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.12em;
+
+    cursor: pointer;
+
+    transition: 0.1s ease;
+
+    box-shadow:
+        0 4px 0 #b5166f;
+}
+
+.compress-button:hover {
+    background-color: #ff2a9b;
+
+    color: #08060c;
+
+    border-color: #ff2a9b;
+
+    box-shadow:
+        0 4px 0 #b5166f,
+        0 0 18px rgba(255, 42, 155, 0.55),
+        0 0 35px rgba(255, 42, 155, 0.25);
+
+    text-shadow:
+        1px 0 #00e5ff;
+
+    transform: translateY(-1px);
+}
+
+.compress-button:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 0 0 #b5166f;
+}
+
+.change-file {
+    display: none;
+
+    margin-top: 14px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: rgba(245, 240, 255, 0.4);
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.1em;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.change-file:hover {
+    color: #00b8ff;
+
+    text-shadow:
+        0 0 8px rgba(0, 184, 255, 0.5);
 }
 
 /* ÁREA ARRASTANDO ARQUIVO */

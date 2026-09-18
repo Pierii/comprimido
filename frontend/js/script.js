@@ -42,8 +42,9 @@ if (menuButton && dropdown && menuArrow) {
 ======================================== */
 
 const selectButton = document.querySelector(".select-button");
-
 const pdfInput = document.getElementById("pdf-input");
+const compressButton = document.getElementById("compress-button");
+const changeFile = document.getElementById("change-file");
 
 if (selectButton && pdfInput) {
 
@@ -53,6 +54,44 @@ if (selectButton && pdfInput) {
 
     });
 
+}
+
+const uploadTitle = document.getElementById("upload-title");
+const uploadInfo = document.getElementById("upload-info");
+const uploadSize = document.getElementById("upload-size");
+const processing = document.getElementById("processing");
+const processingProgress = document.querySelector(".processing-progress");
+
+if (pdfInput && uploadTitle && uploadInfo && uploadSize && compressButton && changeFile) {
+    pdfInput.addEventListener("change", () => {
+        const file = pdfInput.files[0];
+        if (!file) {
+            return;
+        }
+        selectButton.style.display = "none";
+        compressButton.style.display = "block";
+        changeFile.style.display = "block";
+        uploadTitle.textContent = file.name;
+        uploadInfo.textContent = "PDF SELECIONADO";
+        const sizeKB = file.size / 1024;
+
+        if (sizeKB < 1024) {
+            uploadSize.textContent = `${sizeKB.toFixed(2)} KB`;
+        } else {
+            const sizeMB = sizeKB / 1024;
+            uploadSize.textContent = `${sizeMB.toFixed(2)} MB`;
+        }
+    });
+}
+
+/* ========================================
+   TROCAR ARQUIVO
+======================================== */
+
+if (changeFile && pdfInput) {
+    changeFile.addEventListener("click", () => {
+        pdfInput.click();
+    });
 }
 
 /* ========================================

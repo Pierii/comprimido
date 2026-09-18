@@ -52,12 +52,25 @@
                     <div class="file-icon">
                         PDF
                     </div>
-                    <h1>
-                        ARRASTE SEU PDF
-                    </h1>
-                    <p>
-                        or selecione um arquivo do seu dispositivo
+                    <h1 id="upload-title">ARRASTE SEU PDF</h1>
+                    <p id="upload-info">
+                        ou selecione um arquivo
                     </p>
+                    <p id="upload-size"></p>
+                    <button id="compress-button" class="compress-button">
+                        COMPRIMIR
+                    </button>
+                    <button id="change-file" class="change-file">
+                        trocar arquivo
+                    </button>
+                    <div id="processing" class="processing">
+                        <span class="processing-text">
+                            COMPRIMINDO...
+                        </span>
+                        <div class="processing-bar">
+                            <div class="processing-progress"></div>
+                        </div>
+                    </div>
                     <button class="select-button">
                         SELECIONE O PDF
                     </button>
