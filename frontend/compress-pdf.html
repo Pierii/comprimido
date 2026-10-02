@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprimir PDF - Comprimido</title>
-    <link rel="icon" type="image/x-icon" href="img/comprimidinho.ico">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="./img/comprimidinho.ico">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">
-            <img src="img/comprimidinho_transparente.ico" alt="">COMPRIMIDO
+        <a href="./index.html" class="nav-logo">
+            <img src="./img/comprimidinho_transparente.ico" alt="">COMPRIMIDO
         </a>
         <div class="nav-menu">
             <button class="menu-button" id="menu-button">
@@ -20,15 +20,15 @@
                 <span class="menu-arrow">▼</span>
             </button>
             <div class="dropdown" id="dropdown">
-                <a href="compress-pdf.html" class="dropdown-item">
+                <a href="./compress-pdf.html" class="dropdown-item">
                     COMPRIMIR PDF
                 </a>
 
-                <a href="convert-pdf.html" class="dropdown-item">
+                <a href="./convert-pdf.html" class="dropdown-item">
                     CONVERTER PARA PDF
                 </a>
 
-                <a href="merge-pdf.html" class="dropdown-item">
+                <a href="./merge-pdf.html" class="dropdown-item">
                     JUNTAR PDF
                 </a>
             </div>
@@ -49,14 +49,42 @@
         <section class="upload-section">
             <div class="upload-box">
                 <div class="upload-content">
-                    <div class="file-icon">
-                        PDF
+                    <div class="file-icon" id="file-icon">
+                        <span id="file-icon-text">PDF</span>
+                        <canvas id="pdf-thumbnail"></canvas>
                     </div>
                     <h1 id="upload-title">ARRASTE SEU PDF</h1>
                     <p id="upload-info">
                         ou selecione um arquivo
                     </p>
                     <p id="upload-size"></p>
+                    <div class="compression-options" id="compression-options" style="display: none;">
+                        <p class="compression-label">
+                            SELECIONE O TIPO DE COMPRESSÃO:
+                        </p>
+                        <div class="compression-methods">
+                            <label class="compression-option">
+                                <input type="radio" name="compression-mode" value="medium" checked>
+                                <span class="compression-option-title">
+                                    RECOMENDADA
+                                </span>
+                            </label>
+                            <label class="compression-option">
+                                <input type="radio" name="compression-mode" value="extreme">
+                                <span class="compression-option-title">
+                                    EXTREMA
+                                </span>
+                                <span class="compression-info">
+                                    ⓘ
+                                    <span class="compression-tooltip">
+                                        Compressão extrema, ainda em testes.<br>
+                                        Imagens CMYK podem ficar mais saturadas e perder fidelidade visual. <br>
+                                        A opção recomendada ainda é preferível.
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                     <button id="compress-button" class="compress-button">
                         COMPRIMIR
                     </button>
@@ -71,6 +99,34 @@
                             <div class="processing-progress"></div>
                         </div>
                     </div>
+                    <div id="result" class="result">
+                        <span class="result-title">
+                            PDF COMPRIMIDO
+                        </span>
+                        <div class="result-comparison">
+                            <span id="result-original-size">
+                                0 KB
+                            </span>
+                            <span class="result-arrow">
+                                →
+                            </span>
+                            <span id="result-size">
+                                0 KB
+                            </span>
+                        </div>
+                        <span class="result-reduction">
+                            REDUÇÃO:
+                            <span id="result-reduction">
+                                0%
+                            </span>
+                        </span>
+                        <button id="download-button" class="download-button">
+                            BAIXAR PDF
+                        </button>
+                        <button id="compress-another" class="change-file">
+                            comprimir outro arquivo
+                        </button>
+                    </div>
                     <button class="select-button">
                         SELECIONE O PDF
                     </button>
@@ -79,7 +135,18 @@
             </div>
         </section>
     </main>
-    <script src="js/script.js"></script>
+    <!-- pdf-lib -->
+    <script src="./lib/pdf-lib/pdf-lib.min.js"></script>
+
+    <!-- PDF.js -->
+    <script src="./lib/pdfjs/pdf.min.js"></script>
+
+    <!-- jpeg-js -->
+    <script src="./lib/jpeg-js/lib/decoder.js"></script>
+    <script src="./lib/jpeg-js/lib/encoder.js"></script>
+
+    <!-- script principal -->
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

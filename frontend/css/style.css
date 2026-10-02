@@ -1150,18 +1150,6 @@ body::after {
     color: #f5f0ff;
 }
 
-@media (max-width: 800px) {
-
-    .tools {
-        grid-template-columns: 1fr;
-    }
-
-    .tool-card {
-        min-height: 260px;
-    }
-
-}
-
 /* ========================================
    PÁGINA DE COMPRESSÃO
 ======================================== */
@@ -1229,6 +1217,7 @@ body::after {
         0 0 10px rgba(255, 42, 155, 0.7);
 }
 
+
 /* ========================================
    ÁREA DE UPLOAD
 ======================================== */
@@ -1242,7 +1231,7 @@ body::after {
 .upload-box {
     position: relative;
 
-    min-height: 320px;
+    min-height: clamp(320px, 45vh, 350px);
 
     display: flex;
     align-items: center;
@@ -1259,6 +1248,18 @@ body::after {
         inset 0 0 100px rgba(0, 229, 255, 0.07);
 
     transition: 0.25s ease;
+}
+
+.upload-box.drag-over {
+    border-color: #ff2a9b;
+
+    box-shadow:
+        0 0 35px rgba(255, 42, 155, 0.25),
+        0 0 70px rgba(0, 229, 255, 0.15),
+        inset 0 0 45px rgba(255, 42, 155, 0.15),
+        inset 0 0 100px rgba(0, 229, 255, 0.10);
+
+    transform: scale(1.01);
 }
 
 /* LINHA SUPERIOR */
@@ -1441,6 +1442,9 @@ body::after {
     width: 80px;
     height: 100px;
 
+    cursor: pointer;
+
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1467,6 +1471,15 @@ body::after {
         -2px 0 #ff2a9b;
 
     animation: file-glitch 2.5s infinite;
+}
+
+#pdf-thumbnail {
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
 /* GLITCH DO ÍCONE */
@@ -1584,12 +1597,12 @@ body::after {
 }
 
 #upload-size {
-    margin: -15px 0 25px;
+    margin: -15px 0 15px;
+    padding: 0;
+    line-height: 1;
 
     color: rgba(245, 240, 255, 0.35);
-
     font-size: 0.7rem;
-
     letter-spacing: 0.08em;
 }
 
@@ -1646,11 +1659,184 @@ body::after {
 
 /* TEXTO NO HOVER */
 
-.upload-box:hover .upload-content p {
+.upload-box:hover .upload-content p:not(.compression-label) {
     color: rgba(245, 240, 255, 0.7);
 
     text-shadow:
         0 0 8px rgba(245, 240, 255, 0.15);
+}
+
+/* ========================================
+   OPÇÕES DE COMPRESSÃO
+======================================== */
+
+.compression-options {
+    width: fit-content;
+    margin-top: 0;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+}
+
+.upload-content .compression-label {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    white-space: nowrap;
+
+    color: #f5f0ff;
+    text-shadow: 0 0 6px rgba(245, 240, 255, 0.35);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+.compression-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.compression-option {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.compression-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.compression-option-title {
+    color: rgba(245, 240, 255, 0.5);
+
+    font-size: 0.76rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+.compression-option:has(input:checked) .compression-option-title {
+    color: #ff2a9b;
+
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+
+    text-shadow:
+        0 0 8px rgba(255, 42, 155, 0.45);
+}
+
+/* ========================================
+   MÉDIA — SELECIONADA
+======================================== */
+
+.compression-option-medium {
+    border-color: rgba(255, 42, 155, 0.55);
+
+    background:
+        rgba(255, 42, 155, 0.06);
+
+    box-shadow:
+        0 0 20px rgba(255, 42, 155, 0.08),
+        inset 0 0 25px rgba(255, 42, 155, 0.04);
+}
+
+
+/* ========================================
+   RADIO SELECIONADO
+======================================== */
+
+.compression-option:has(input:checked) {
+    border-color: rgba(255, 42, 155, 0.65);
+
+    box-shadow:
+        0 0 20px rgba(255, 42, 155, 0.10),
+        inset 0 0 25px rgba(255, 42, 155, 0.05);
+}
+
+/* ========================================
+   ÍCONE DE INFORMAÇÃO
+======================================== */
+
+.compression-info {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(245, 240, 255, 0.45);
+
+    font-size: 0.9rem;
+
+    cursor: help;
+
+    transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+
+.compression-info:hover {
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 8px rgba(0, 229, 255, 0.7);
+}
+
+
+/* ========================================
+   TOOLTIP
+======================================== */
+
+.compression-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(5px);
+
+    width: max-content;
+    max-width: 220px;
+    white-space: normal;
+    box-sizing: border-box;
+
+    padding: 10px 12px;
+    background: #08060c;
+    border: 1px solid rgba(0, 229, 255, 0.45);
+    box-shadow:
+        0 0 18px rgba(0, 229, 255, 0.12),
+        inset 0 0 15px rgba(255, 42, 155, 0.05);
+    color: rgba(245, 240, 255, 0.75);
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+    z-index: 20;
+}
+
+.compression-info:hover .compression-tooltip {
+    opacity: 1;
+
+    transform:
+        translateX(-50%) translateY(0);
 }
 
 /* BOTÃO SELECIONAR PDF */
@@ -1809,6 +1995,110 @@ body::after {
     text-shadow:
         4px 0 #00e5ff,
         -4px 0 #ff2a9b;
+}
+
+.result {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.result-title {
+    margin-bottom: 10px;
+
+    color: #f5f0ff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-shadow:
+        2px 0 #ff2a9b,
+        -2px 0 #00e5ff;
+    transform: skew(-2deg);
+}
+
+.result-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 8px 0 6px;
+
+    color: #f5f0ff;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.result-arrow {
+    color: #00e5ff;
+    font-size: 1.1rem;
+    text-shadow:
+        0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.result-reduction {
+    color: rgba(245, 240, 255, 0.65);
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.result-reduction span {
+    color: #ff2a9b;
+    font-weight: 700;
+    text-shadow:
+        0 0 8px rgba(255, 42, 155, 0.4);
+}
+
+.download-button {
+    padding: 12px 28px;
+
+    background: transparent;
+
+    border: 1px solid #ff2a9b;
+
+    color: #f5f0ff;
+
+    font-family: 'Oswald', sans-serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.12em;
+
+    cursor: pointer;
+
+    transition: 0.1s ease;
+
+    box-shadow:
+        0 4px 0 #b5166f;
+}
+
+.download-button:hover {
+    background-color: #ff2a9b;
+
+    color: #08060c;
+
+    border-color: #ff2a9b;
+
+    box-shadow:
+        0 4px 0 #b5166f,
+        0 0 18px rgba(255, 42, 155, 0.55),
+        0 0 35px rgba(255, 42, 155, 0.25);
+
+    text-shadow:
+        1px 0 #00e5ff;
+
+    transform: translateY(-1px);
+}
+
+.download-button:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 0 0 #b5166f;
 }
 
 /* ========================================
@@ -2174,4 +2464,58 @@ body::after {
 
         font-size: 0.65rem;
     }
+}
+
+@media (max-width: 800px) {
+
+    .tools {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        min-height: 260px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .upload-section {
+        width: 90%;
+        margin-top: 6vh;
+    }
+
+    .upload-box {
+        min-height: 320px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .file-icon {
+        width: 65px;
+        height: 80px;
+        margin-bottom: 18px;
+    }
+
+    .upload-content h1 {
+        font-size: 1.1rem;
+    }
+
+    .upload-content p {
+        margin: 8px 0 18px;
+    }
+
+    #upload-size {
+        margin: -10px 0 8px;
+    }
+
+    .compress-button,
+    .download-button {
+        padding: 10px 22px;
+    }
+
+    .change-file {
+        margin-top: 10px;
+    }
+
 }
